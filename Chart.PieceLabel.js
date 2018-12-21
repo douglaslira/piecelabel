@@ -1,10 +1,11 @@
 /**
- * [Chart.PieceLabel.js]{@link https://github.com/beaver71/Chart.PieceLabel.js}
+ * [Chart.PieceLabel.js]{@link https://github.com/douglaslira/Chart.PieceLabel.js}
  *
  * @version 0.9.1
  * @author Chen, Yi-Cyuan [emn178@gmail.com]
  * @copyright Chen, Yi-Cyuan 2017
  * @forkedby Beaver71 2017
+ * @forkedby Douglas Lira 2018
  * @license MIT
  */
 (function () {
@@ -17,7 +18,7 @@
         this.drawDataset = this.drawDataset.bind(this);
     }
     
-    var segmOffset = 20;
+    var segmOffset = 40;
                     
     PieceLabel.prototype.beforeDatasetsUpdate = function (chartInstance) {
         if (this.parseOptions(chartInstance) && this.position === 'outside') {
@@ -187,10 +188,10 @@
                         ctx.lineWidth = 1;
                         ctx.lineTo(end.x, end.y);
                         if (start.x < end.x) {
-                            position.x = position.x + 10;
+                            position.x = position.x;
                             end.x = position.x - metrics.width / 2 - 1;
                         } else {
-                            position.x = position.x - 10;
+                            position.x = position.x;
                             end.x = position.x + metrics.width / 2 + 1;
                         }
                         left = position.x - metrics.width / 2,
@@ -198,7 +199,7 @@
                         top = position.y - this.fontSize / 2,
                         bottom = position.y + this.fontSize / 2;
 
-                        ctx.lineTo(end.x, end.y);
+                        // ctx.lineTo(end.x, end.y);
                         ctx.stroke();
                     }
                     drawable = this.checkTextBound(left, right, top, bottom);
@@ -303,11 +304,11 @@
             ctx.textAlign = 'center';
             var split_string = text.split('\n');
             for(var i=0;i<split_string.length;i++){
-                var new_pos = {
-                    x: position.x,
-                    y: (position.y - this.fontSize / 2) + (i*this.fontSize)
-                };
-                ctx.fillText(split_string[i], new_pos.x, new_pos.y);
+              var new_pos = {
+                x: position.x,
+                y: (position.y - this.fontSize / 2) + (i*this.fontSize)
+              };
+              ctx.fillText(split_string[i], new_pos.x, new_pos.y);
             }
         }
     };
